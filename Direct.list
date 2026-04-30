@@ -2,3 +2,9 @@
 # 来源：https://github.com/maplesky/subscribe/
 
 DOMAIN-SUFFIX,uevan.com
+DOMAIN-SUFFIX,xn--ngstr-lra8j.com,DIRECT
+DOMAIN-SUFFIX,googleapis.cn,DIRECT
+DOMAIN,clientservices.googleapis.com,DIRECT
+DOMAIN,update.googleapis.com,DIRECT
+DOMAIN,translate.googleapis.com,DIRECT
+DOMAIN,fonts.googleapis.com,DIRECT
