@@ -1,10 +1,10 @@
 # 内容：自定义直连
 # 来源：https://github.com/maplesky/subscribe/
 
-DOMAIN-SUFFIX,uevan.com,DIRECT
-DOMAIN-SUFFIX,xn--ngstr-lra8j.com,DIRECT
-DOMAIN-SUFFIX,googleapis.cn,DIRECT
-DOMAIN,clientservices.googleapis.com,DIRECT
-DOMAIN,update.googleapis.com,DIRECT
-DOMAIN,translate.googleapis.com,DIRECT
-DOMAIN,fonts.googleapis.com,DIRECT
+DOMAIN-SUFFIX,uevan.com
+DOMAIN-SUFFIX,xn--ngstr-lra8j.com
+DOMAIN-SUFFIX,googleapis.cn
+DOMAIN,clientservices.googleapis.com
+DOMAIN,update.googleapis.com
+DOMAIN,translate.googleapis.com
+DOMAIN,fonts.googleapis.com
