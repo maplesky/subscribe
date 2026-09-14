@@ -1,0 +1,7 @@
+# 内容：自定义兜底
+# 来源：https://github.com/maplesky/subscribe/
+
+DOMAIN-SUFFIX,1lou.me
+DOMAIN-SUFFIX,mail.com
+DOMAIN-SUFFIX,dynadot.com
+DOMAIN-SUFFIX,challenges.cloudflare.com
