@@ -1,0 +1,27 @@
+name: 🌩 cloudflare
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+      timezone: 'Asia/Shanghai'
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+    - name: 检出仓库代码
+      uses: actions/checkout@v7
+
+    - name: 安装依赖组件
+      run: pip install curl_cffi
+
+    - name: 筛选优选地址
+      run: python -u cloudflare/build.py
+
+    - name: 推送订阅文件
+      uses: stefanzweifel/git-auto-commit-action@v7
