@@ -6,6 +6,6 @@ rule = [
 
 for node in rule:
 	subprocess.run(
-		["curl", "-fsSL", "--retry", "3", "--create-dirs", "--output-dir", node["to"], "-O", "https://raw.githubusercontent.com/{ node["url"] }"],
+		["curl", "-fsSL", "--retry", "3", "--create-dirs", "--output-dir", node["to"], "-O", "https://raw.githubusercontent.com/{ node['url'] }"],
 		check=True,
 	)
