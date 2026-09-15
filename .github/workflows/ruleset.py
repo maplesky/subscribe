@@ -16,4 +16,4 @@ fetch = lambda url, out: subprocess.run(
 for t in tasks:
     out = Path(t["dir"]) / Path(t["url"]).name
     fetch(t["url"], out)
-    subprocess.run(["git", "add", f"Update form: { t['url'] }"], check=True)
+    subprocess.run(["git", "commit", "-m", f"Update from: { t['url'] }"], check=True)
