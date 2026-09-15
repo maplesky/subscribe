@@ -17,4 +17,10 @@ fetch = lambda url, out: subprocess.run(
 for t in tasks:
     out = Path(t["dir"]) / Path(t["url"]).name
     fetch(t["url"], out)
-    print(f"✓ {out}")
+    git("add", str(out))
+    # 只有内容有变化才提交，避免空提交报错
+    if subprocess.run(["git", "diff", "--cached", "--quiet"]).returncode != 0:
+        git("commit", "-m", f"chore: update {out} from {t['url']}")
+        print(f"✓ committed {out}")
+    else:
+        print(f"= no change {out}")
