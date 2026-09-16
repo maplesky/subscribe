@@ -1,5 +1,6 @@
 # 依赖库
 import json
+import time
 from curl_cffi import requests
 from urllib.parse import urlparse, parse_qsl
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -35,7 +36,7 @@ with ThreadPoolExecutor( max_workers = 25 ) as pool:
 			ex = response.json()
 			if ex.get("code", 0 ) == 200:
 				lat = ex["data"]["ping"]
-				if float( lat[:-2] ) < 200:
+				if float( lat[:-2] ) < 185:
 					# 写入缓存
 					cache.append(f"{ ip }:{ ex['data']['port'] }#{ meta['country'] } { meta['city'] } / { meta['asOrganization'] } / AS{ meta['asn'] }\n")
 					print(f" | \033[32m{ lat }\033[0m")
@@ -43,6 +44,8 @@ with ThreadPoolExecutor( max_workers = 25 ) as pool:
 					print(f" | \033[31m延迟过高\033[0m")
 			else:
 				print(f" | \033[31m{ ex.get('msg', response.status_code ) }\033[0m")
+		elif response.status_code == 429:
+			time.sleep( 15 )
 		else:
 			print("网络错误：", response.status_code )
 
