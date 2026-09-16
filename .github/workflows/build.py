@@ -8,12 +8,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # 临时缓存
 cache = []
 
-# 复用连接
-session = requests.Session(
-	timeout = 15,
-	impersonate = "chrome"
-)
-
 # 转换数据
 basic = [
 	item for item in session.get("https://zip.cm.edu.kg/all.json").json().get('data', [])
@@ -23,7 +17,7 @@ basic = [
 # 多线程处理
 with ThreadPoolExecutor( max_workers = 25 ) as pool:
 	results = pool.map(
-			lambda node: ( node["meta"], session.get(f"https://v2.xxapi.cn/api/tcping?address={ node["ip"] }&port={ node["port"][0] }")
+			lambda node: ( node["meta"], requests.get(f"https://v2.xxapi.cn/api/tcping?address={ node["ip"] }&port={ node["port"][0] }", timeout=10, impersonate="chrome")
 		),
 		basic
 	)
