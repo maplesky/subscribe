@@ -11,7 +11,6 @@ cache = []
 # 复用连接
 session = requests.Session(
 	timeout = 15,
-	max_retries = 3,
 	impersonate = "chrome"
 )
 
