@@ -42,11 +42,11 @@ with ThreadPoolExecutor( max_workers = 25 ) as pool:
 					cache.append(f"{ ip }:{ ex['data']['port'] }#{ meta['country'] } { meta['city'] } / { meta['asOrganization'] } / AS{ meta['asn'] }\n")
 					print(f" | \033[32m{ lat }\033[0m")
 				else:
-					print(f" | \033[31m延迟过高\033[0m")
+					print(" | \033[31m延迟过高\033[0m")
 			else:
 				print(f" | \033[31m{ ex.get('msg', response.status_code ) }\033[0m")
 		elif response.status_code == 429:
-			print(f" | \033[31m请求上限\033[0m")
+			print(" | \033[31m请求上限\033[0m")
 			time.sleep( 15 )
 		else:
 			print("网络错误：", response.status_code )
