@@ -10,7 +10,7 @@ cache = []
 
 # 复用连接
 session = requests.Session(
-	retries = 3,
+	retry = 3,
 	timeout = 15,
 	impersonate = "chrome"
 )
