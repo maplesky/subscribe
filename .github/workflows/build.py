@@ -18,7 +18,7 @@ session = requests.Session(
 # 转换数据
 basic = [
 	item for item in session.get("https://zip.cm.edu.kg/all.json").json().get('data', [])
-	if "asOrganization" in item["meta"] and item["meta"]["country"] in ["HK", "SG", "TW", "JP", "KR", "US", "GB", "FR", "RU", "FI"]
+	if "asOrganization" in item["meta"] and item["meta"]["country"] in ["HK", "SG", "TW", "JP", "KR", "US", "GB", "FR", "RU", "FI", "NL", "DE"]
 ]
 
 # 多线程处理
