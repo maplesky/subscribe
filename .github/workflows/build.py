@@ -37,6 +37,7 @@ with ThreadPoolExecutor( max_workers = 20 ) as pool:
 			ex = response.json()
 			if ex.get("code", 0 ) == 200:
 				cache.append(f"{ ip }:{ ex['data']['port'] }#{ meta['country'] } { meta['city'] } / { meta['asOrganization'] } / AS{ meta['asn'] }\n")
+				print(f" | \033[32m连接成功\033[0m")
 			else:
 				print(f" | \033[31m{ ex.get('msg', response.status_code ) }\033[0m")
 		elif response.status_code == 429:
@@ -46,5 +47,5 @@ with ThreadPoolExecutor( max_workers = 20 ) as pool:
 			print("网络错误：", response.status_code )
 
 # 缓存写入文件
-with open("country.txt", "w", encoding="utf-8") as f:
+with open("country2.txt", "w", encoding="utf-8") as f:
 	f.writelines( cache )
