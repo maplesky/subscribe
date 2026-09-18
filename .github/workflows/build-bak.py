@@ -22,34 +22,8 @@ basic = [
 ]
 
 # 多线程处理
-with ThreadPoolExecutor( max_workers = 20 ) as pool:
-	results = pool.map(
-			lambda node: ( node["meta"], session.get(f"https://v2.xxapi.cn/api/tcping?address={ node["ip"] }&port={ node["port"][0] }")
-		),
-		basic
-	)
-
-	for meta, response in results:
-		ip = dict( parse_qsl( urlparse( response.url ).query ) ).get("address")
-		print(f"{ip:<15}", end="")
-		if response.status_code == 200:
-			# 转换数据
-			ex = response.json()
-			if ex.get("code", 0 ) == 200:
-				lat = ex["data"]["ping"]
-				if float( lat[:-2] ) < 185:
-					# 写入缓存
-					cache.append(f"{ ip }:{ ex['data']['port'] }#{ meta['country'] } { meta['city'] } / { meta['asOrganization'] } / AS{ meta['asn'] }\n")
-					print(f" | \033[32m{ lat }\033[0m")
-				else:
-					print(" | \033[31m延迟过高\033[0m")
-			else:
-				print(f" | \033[31m{ ex.get('msg', response.status_code ) }\033[0m")
-		elif response.status_code == 429:
-			print(" | \033[31m请求上限\033[0m")
-			time.sleep( 15 )
-		else:
-			print("网络错误：", response.status_code )
+for item in basic:
+	cache.append(f"{ item['ip'] }:{ item['_port'] }\n")
 
 # 缓存写入文件
 with open("country.txt", "w", encoding="utf-8") as f:
