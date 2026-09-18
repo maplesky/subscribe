@@ -37,7 +37,7 @@ with ThreadPoolExecutor( max_workers = 20 ) as pool:
 			ex = response.json()
 			if ex.get("code", 0 ) == 200:
 				lat = ex["data"]["ping"]
-				if float( lat[:-2] ) < 150:
+				if float( lat[:-2] ) < 185:
 					# 写入缓存
 					cache.append(f"{ ip }:{ ex['data']['port'] }#{ meta['country'] } { meta['city'] } / { meta['asOrganization'] } / AS{ meta['asn'] }\n")
 					print(f" | \033[32m{ lat }\033[0m")
