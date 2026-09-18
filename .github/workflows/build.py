@@ -23,7 +23,7 @@ basic = [
 
 # 多线程处理
 for item in basic:
-	cache.append(f"{ item['ip'] }:{ item['_port'] }\n")
+	cache.append(f"{ item['ip'] }:{ item['port'][0] }\n")
 
 # 缓存写入文件
 with open("country.txt", "w", encoding="utf-8") as f:
