@@ -24,7 +24,7 @@ basic = [
 
 # 多线程处理
 for i, data in enumerate( basic ):
-	cache.append(f"{ data.get('ip') }:{ data.['port'][0] }\n")
+	cache.append(f"{ data.get('ip') }:{ data['port'][0] }\n")
 
 # 缓存写入文件
 with open("country.txt", "w", encoding="utf-8") as f:
