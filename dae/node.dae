@@ -1,0 +1,49 @@
+subscription {
+    cloudflare: {
+        url: 'edge tunnel subscribe'
+        interval: 6h
+    }
+}
+
+group {
+    HK {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name( regex: '(?i)(?:^|[^a-z0-9])hk(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])hkg(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])hongkong(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])hong kong(?:[^a-z0-9]|$)|香港|港')
+    }
+    TW {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name( regex: '(?i)(?:^|[^a-z0-9])tw(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])tpe(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])taiwan(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])taipei(?:[^a-z0-9]|$)|台灣|台湾|臺灣|台北')
+    }
+    JP {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name( regex: '(?i)(?:^|[^a-z0-9])jp(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])jpn(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])japan(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])tokyo(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])osaka(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])nrt(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])hnd(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])kix(?:[^a-z0-9]|$)|日本|東京|东京|大阪')
+    }
+    KR {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name( regex: '(?i)(?:^|[^a-z0-9])kr(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])kor(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])korea(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])seoul(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])icn(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])south korea(?:[^a-z0-9]|$)|南韩|南韓|韓國|韩国|首爾|首尔')
+    }
+    SG {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name(regex: '(?i)(?:^|[^a-z0-9])sg(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])sgp(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])singapore(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])sin(?:[^a-z0-9]|$)|新加坡|獅城|狮城')
+    }
+    US {
+        final: Basic
+        policy: score
+        interrupt_connections: true
+        filter: name( regex: '(?i)(?:^|[^a-z0-9])us(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])usa(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])united states(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])america(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])lax(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])sjc(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])sea(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])nyc(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])los angeles(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])san jose(?:[^a-z0-9]|$)|(?:^|[^a-z0-9])seattle(?:[^a-z0-9]|$)|美國|美国|洛杉磯|洛杉矶|聖何塞|圣何塞|西雅圖|西雅图')
+    }
+    Basic {
+        policy: score
+        filter: name(regex: '电信|移动|联通|三网')
+    }
+}

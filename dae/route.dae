@@ -1,0 +1,24 @@
+routing {
+    # 规则过滤
+    domain( geosite: category-ads-all ) -> block
+
+    # 谷歌商店
+    domain( suffix: googleapis.cn, suffix: xn--ngstr-lra8j.com ) -> HK
+
+    # 媒体相关
+    dip( geoip: netflix ) -> HK
+    domain( geosite: youtube, geosite: netflix, geosite: spotify ) -> HK
+
+    # 智能平台
+    domain( geosite: category-ai-!cn ) -> US
+
+    # 社交媒体
+    dip( geoip: twitter, geoip: telegram ) -> HK
+    domain( geosite: twitter, geosite: telegram ) -> HK
+
+    # 兜底代理
+    domain( geosite: gfw ) -> HK
+
+    # 默认兜底
+    fallback: direct
+}

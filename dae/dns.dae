@@ -1,0 +1,20 @@
+dns {
+    upstream {
+        local: 'udp://127.0.0.1:53' -> direct
+        remote: 'https://cloudflare-dns.com/dns-query'
+    }
+    routing {
+        request {
+            qname( geosite:category-ads-all ) -> reject
+            qname( geosite: geolocation-!cn ) -> remote
+            fallback: local
+        }
+        response {
+            upstream( remote ) && ip( geoip: cn ) -> local
+            fallback: accept
+        }
+    }
+    client_subnet: auto
+    max_cache_size: 100000
+    ipversion_prefer: 4
+}
