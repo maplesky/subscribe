@@ -44,6 +44,6 @@ group {
     }
     Basic {
         policy: score
-        filter: name(regex: '电信|移动|联通|三网')
+        filter: name(regex: '电信|移动|联通|三网|多线')
     }
 }
